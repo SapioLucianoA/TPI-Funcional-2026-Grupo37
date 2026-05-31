@@ -38,3 +38,5 @@ git config --global user.email "tu-correo@ejemplo.com"
 ```
 
 > 💡 **Nota importante:** Usá el mismo correo electrónico con el que te registraste en tu cuenta de GitHub. Esto garantiza que la plataforma reconozca tus contribuciones en los gráficos del proyecto.
+
+
