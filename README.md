@@ -9,7 +9,7 @@
 Este comando se ejecuta **una sola vez** para descargar el repositorio a tu computadora:
 
 ```bash
-git clone <https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas>
+git clone https://github.com/SapioLucianoA/TPI-Funcional-2026-Grupo37
 ```
 
 ---
@@ -46,6 +46,6 @@ git push origin nombre-de-tu-rama
 ```
 
 ```bash
-https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas  
+https://github.com/SapioLucianoA/TPI-Funcional-2026-Grupo37  
 ```
 
