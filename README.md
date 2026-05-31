@@ -9,7 +9,7 @@
 Este comando se ejecuta **una sola vez** para descargar el repositorio a tu computadora:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone <https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas>
 ```
 
 ---
@@ -45,4 +45,5 @@ Una vez que tu código esté actualizado y funcionando bien, subí tu rama a la 
 git push origin nombre-de-tu-rama
 ```
 
-````</https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas>
+```</ https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas > 
+```
