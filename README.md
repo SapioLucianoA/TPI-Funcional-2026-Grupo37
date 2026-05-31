@@ -45,5 +45,7 @@ Una vez que tu código esté actualizado y funcionando bien, subí tu rama a la 
 git push origin nombre-de-tu-rama
 ```
 
-```</ https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas > 
+```bash
+https://github.com/SapioLucianoA/Trabajo-Integrador-Paradigmas  
 ```
+
