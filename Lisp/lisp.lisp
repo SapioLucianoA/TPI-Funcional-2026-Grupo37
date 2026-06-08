@@ -6,3 +6,12 @@
 						(t (list color-actual 'accion-por-defecto))
 		)
 )
+(defun timer (tiempo-unix) 
+	(let ((segundos (mod tiempo-unix 216)))
+			(cond 
+				((< segundos 90 )  'rojo)
+				((and (> segundos 89) (< segundos 96)) 'amarillo)
+				(t 'verde)
+			)
+	)
+)
