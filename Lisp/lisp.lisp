@@ -65,3 +65,46 @@
 (floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-amarilla segundos-luz-verde))
 
 )
+
+;; ========================================================
+;; CARGA DE LIBRERIA
+;; LIBRERIA: local-time
+;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(ql:quickload "local-time")
+
+;; ========================================================
+;; FUNCIÓN: convertir-fecha
+;; NATURALEZA: Pura (Para un mismo tiempo Unix retorna siempre la misma fecha)
+;; ESTRATEGIA: Composición de Funciones (Uso de funciones de local-time)
+;; IMPACTO: No destructiva
+;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(defun convertir-fecha (tiempo-unix)
+
+	(local-time:format-timestring
+		nil
+		(local-time:unix-to-timestamp tiempo-unix)
+	)
+
+)
+
+;; ========================================================
+;; FUNCIÓN: registrar-cambio
+;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
+;; ESTRATEGIA: Secuencial (Obtiene una fecha y luego genera un mensaje)
+;; IMPACTO: No destructiva
+;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(defun registrar-cambio (tiempo-unix color-anterior color-nuevo)
+
+	(format t
+		"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
+		(convertir-fecha tiempo-unix)
+		color-anterior
+		color-nuevo
+	)
+)
