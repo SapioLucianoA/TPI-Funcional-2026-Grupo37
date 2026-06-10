@@ -19,10 +19,11 @@ Este documento detalla el nivel de asistencia de herramientas de Inteligencia Ar
 
 ---
 
-### 👨‍💻 [Nombre del Integrante 3]
-* **IA Utilizada:** [Ej: ...]
-* **Rol y Alcance de la Asistencia:** [Ej: ...]
-* **Declaración de Autoría:** [Ej: ...]
+### 👨‍💻 Nuñez, Tobias Nahuel
+
+* *IA Utilizada:* Antigravity
+* *Rol y Alcance de la Asistencia:* Asistencia en la sintaxis de Haskell, corrección de errores de compilación y apoyo en la documentación.
+* *Declaración de Autoría:* La IA fue utilizada como herramienta de apoyo para comprender construcciones propias de Haskell, como el uso de guards y cláusulas where, así como para interpretar y corregir errores reportados por el compilador. También se empleó para mejorar la organización, estructura y redacción de la documentación y del informe. La lógica del programa, el diseño de la solución y la implementación del código fuente presentado son de mi autoría.
 
 ---
 
