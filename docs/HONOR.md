@@ -11,17 +11,19 @@ Este documento detalla el nivel de asistencia de herramientas de Inteligencia Ar
 
 ---
 
-### 👨‍💻 [Nombre del Integrante 2]
-* **IA Utilizada:** [Ej: ChatGPT, Claude, GitHub Copilot, Ninguna]
-* **Rol y Alcance de la Asistencia:** [Ej: Asistencia en la sintaxis de Haskell / Generación de la estructura del archivo de texto]
-* **Declaración de Autoría:** [Breve descripción de cómo se usó y qué parte del trabajo es autoría propia]
+### 👨‍💻 Schugurensky, Leandro Daniel
+
+* **IA Utilizada:** Claude
+* **Rol y Alcance de la Asistencia:** Asistencia en la sintaxis de Haskell, comprensión del sistema de tipos y apoyo en la documentación.
+* **Declaración de Autoría:** La IA fue utilizada como herramienta de apoyo para comprender aspectos de la sintaxis de Haskell, particularmente la definición de Algebraic Data Types (ADT), el uso de pattern matching y la interpretación de mensajes de error del compilador. También se utilizó para mejorar la estructura y la redacción de la documentación y del informe. La lógica del programa, el diseño de la solución y la implementación del código fuente presentado son de mi autoría.
 
 ---
 
-### 👨‍💻 [Nombre del Integrante 3]
-* **IA Utilizada:** [Ej: ...]
-* **Rol y Alcance de la Asistencia:** [Ej: ...]
-* **Declaración de Autoría:** [Ej: ...]
+### 👨‍💻 Nuñez, Tobias Nahuel
+
+* *IA Utilizada:* Antigravity
+* *Rol y Alcance de la Asistencia:* Asistencia en la sintaxis de Haskell, corrección de errores de compilación y apoyo en la documentación.
+* *Declaración de Autoría:* La IA fue utilizada como herramienta de apoyo para comprender construcciones propias de Haskell, como el uso de guards y cláusulas where, así como para interpretar y corregir errores reportados por el compilador. También se empleó para mejorar la organización, estructura y redacción de la documentación y del informe. La lógica del programa, el diseño de la solución y la implementación del código fuente presentado son de mi autoría.
 
 ---
 
