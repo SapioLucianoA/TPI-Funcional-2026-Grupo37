@@ -14,3 +14,22 @@ transicion EnAmarillo Rojo     = ResultadoTransicion EnAmarillo "cambiar-a-rojo"
 transicion EnRojo     Verde    = ResultadoTransicion EnRojo     "cambiar-a-verde"
 transicion estado     _        = ResultadoTransicion estado     "accion-por-defecto"
 
+
+
+
+
+-- ========================================================
+-- FUNCIÓN: temporizador
+-- NATURALEZA: Pura (dado el mismo número siempre da el mismo
+--             resultado, no depende de ninguna variable externa)
+-- ESTRATEGIA: Guards (los | son como los casos del cond de Lisp,
+--             se evalúan de arriba hacia abajo hasta que uno sea True)
+-- IMPACTO: No destructiva
+-- ALUMNO: NUÑEZ TOBIAS NAHUEL
+-- ========================================================
+temporizador :: Integer -> EstadoActual
+temporizador tiempoUnix
+    | segundos <  90 = EnRojo
+    | segundos <  96 = EnAmarillo
+    | otherwise      = EnVerde
+    where segundos = tiempoUnix mod 216
