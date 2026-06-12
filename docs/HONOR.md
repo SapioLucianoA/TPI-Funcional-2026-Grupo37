@@ -27,10 +27,10 @@ Este documento detalla el nivel de asistencia de herramientas de Inteligencia Ar
 
 ---
 
-### 👨‍💻 [Nombre del Integrante 4]
-* **IA Utilizada:** [Ej: ...]
-* **Rol y Alcance de la Asistencia:** [Ej: ...]
-* **Declaración de Autoría:** [Ej: ...]
+### 👨‍💻 Prieto, Cesar Gabriel
+* **IA Utilizada:** Gemini
+* **Rol y Alcance de la Asistencia:** Ayuda para entender los requerimientos, revisar funciones en Lisp, corregir errores y resolver dudas sobre Git y GitHub.
+* **Declaración de Autoría:** Las funciones fueron desarrolladas por mí. Recurrí a herramientas de IA para consultas puntuales sobre la sintaxis de Lisp, el manejo de la librería local-time y la identificación de algunos errores durante el proceso de desarrollo.
 
 ---
 
