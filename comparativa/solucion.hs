@@ -29,7 +29,7 @@ transicion estado     _        = ResultadoTransicion estado     "accion-por-defe
 -- ========================================================
 temporizador :: Integer -> EstadoActual
 temporizador tiempoUnix
-    | segundos <  90 = EnRojo
-    | segundos <  96 = EnAmarillo
-    | otherwise      = EnVerde
-    where segundos = tiempoUnix mod 216
+    | segundos <  90  = EnRojo
+    | segundos <  210 = EnVerde
+    | otherwise       = EnAmarillo
+    where segundos = tiempoUnix `mod` 216
