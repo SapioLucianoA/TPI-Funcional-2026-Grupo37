@@ -5,13 +5,13 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun  transicion ( color-actual cambiar-a )
-		(cond  
-						((and (eq color-actual  'en-verde) (eq cambiar-a  'amarillo) ) (list color-actual "cambiar-a-amarillo")) 
-						((and (eq color-actual  'en-amarillo)  (eq cambiar-a  'rojo) ) (list color-actual "cambiar-a-rojo"))
-						((and (eq color-actual  'en-rojo ) (eq cambiar-a 'verde) ) (list color-actual "cambiar-a-verde"))
-						(t (list color-actual 'accion-por-defecto))
-		)
+(defun transicion (color-actual cambiar-a)
+  (cond  
+				((and (eq color-actual 'en-rojo) (eq cambiar-a 'verde))   (list color-actual "cambiar-a-verde"))
+				((and (eq color-actual 'en-verde) (eq cambiar-a 'amarillo))  (list color-actual "cambiar-a-amarillo"))
+				((and (eq color-actual 'en-amarillo) (eq cambiar-a 'rojo))   (list color-actual "cambiar-a-rojo"))
+				(t (list color-actual 'accion-por-defecto))
+  )
 )
 ;; ========================================================
 ;; FUNCIÓN: temporizador (nombre antigüo timer)
@@ -24,8 +24,8 @@
 	(let ((segundos (mod tiempo-unix 216)))
 			(cond 
 				((< segundos 90 )  'rojo)
-				((and (> segundos 89) (< segundos 96)) 'amarillo)
-				(t 'verde)
+				((and (> segundos 89) (< segundos 210)) 'verde)
+				(t 'amarillo)
 			)
 	)
 )
@@ -36,8 +36,8 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
-	(+ tiempo-rojo tiempo-amarillo tiempo-verde)   
+(defun duracion-ciclo (tiempo-rojo tiempo-verde tiempo-amarillo)
+	(+ tiempo-rojo tiempo-verde tiempo-amarillo )   
 )
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
@@ -60,9 +60,9 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun ciclos-por-tiempo (segundos-totales segundos-luz-verde segundos-luz-amarilla segundos-luz-roja )
+(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-verde segundos-luz-amarilla)
 
-(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-amarilla segundos-luz-verde))
+(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-verde segundos-luz-amarilla ))
 
 )
 
