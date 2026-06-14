@@ -66,6 +66,41 @@
 
 )
 
+
+;; ========================================================
+;; FUNCIÓN: distribucion-por-hora
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Operaciones matematicas(proporcion y composicion)
+;; IMPACTO: No destructiva
+;; ALUMNO: JOSEIFNA VALLEJOS ROMERO
+;; ========================================================
+
+(defun distribucion-por-hora()
+	(list
+	   (list 'rojo (*(float(/ 90 216))100))
+	   (list 'amarillo (*(float(/ 6 216))100))
+	   (list 'verde (*(float(/ 120 216))100))
+	 )
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ;; ========================================================
 ;; CARGA DE LIBRERIA
 ;; LIBRERIA: local-time
