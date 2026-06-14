@@ -9,12 +9,13 @@
 -- ALUMNO: SCHUGURENSKY LEANDRO DANIEL
 -- ========================================================
 transicion :: EstadoActual -> ColorDestino -> ResultadoTransicion
-transicion EnVerde    Amarillo = ResultadoTransicion EnVerde    "cambiar-a-amarillo"
-transicion EnAmarillo Rojo     = ResultadoTransicion EnAmarillo "cambiar-a-rojo"
-transicion EnRojo     Verde    = ResultadoTransicion EnRojo     "cambiar-a-verde"
-transicion estado     _        = ResultadoTransicion estado     "accion-por-defecto"
-
-
+transicion EnRojo               RojoIntermitente     = ResultadoTransicion EnRojo               "cambiar-a-rojo-intermitente"
+transicion RojoIntermitente     Verde                = ResultadoTransicion RojoIntermitente     "cambiar-a-verde"
+transicion EnVerde              VerdeIntermitente    = ResultadoTransicion EnVerde              "cambiar-a-verde-intermitente"
+transicion VerdeIntermitente    Amarillo             = ResultadoTransicion VerdeIntermitente    "cambiar-a-amarillo"
+transicion EnAmarillo           AmarilloIntermitente = ResultadoTransicion EnAmarillo           "cambiar-a-amarillo-intermitente"
+transicion AmarilloIntermitente Rojo                 = ResultadoTransicion AmarilloIntermitente "cambiar-a-rojo"
+transicion estado               _                    = ResultadoTransicion estado               "accion-por-defecto"
 
 
 
@@ -29,7 +30,10 @@ transicion estado     _        = ResultadoTransicion estado     "accion-por-defe
 -- ========================================================
 temporizador :: Integer -> EstadoActual
 temporizador tiempoUnix
-    | segundos <  90 = EnRojo
-    | segundos <  96 = EnAmarillo
-    | otherwise      = EnVerde
+    | segundos <  90  = EnRojo
+    | segundos <  93  = RojoIntermitente
+    | segundos <  213 = EnVerde
+    | segundos <  216 = VerdeIntermitente
+    | segundos <  222 = EnAmarillo
+    | otherwise       = AmarilloIntermitente
     where segundos = tiempoUnix mod 216
