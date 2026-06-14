@@ -70,9 +70,9 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-verde segundos-luz-amarilla)
+(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente )
 
-(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-verde segundos-luz-amarilla ))
+(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente ))
 
 )
 
