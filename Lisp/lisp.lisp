@@ -28,13 +28,16 @@
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
 (defun temporizador (tiempo-unix) 
-	(let ((segundos (mod tiempo-unix 216)))
-			(cond 
-				((< segundos 90 )  'rojo)
-				((and (> segundos 89) (< segundos 210)) 'verde)
-				(t 'amarillo)
-			)
-	)
+  (let ((segundos (mod tiempo-unix 225)))
+      (cond 
+        ((< segundos 90) 'rojo)
+        ((and (>= segundos 90) (< segundos 93)) 'rojo-intermitente)
+        ((and (>= segundos 93) (< segundos 213)) 'verde)
+        ((and (>= segundos 213) (< segundos 216)) 'verde-intermitente)
+        ((and (>= segundos 216) (< segundos 222)) 'amarillo)
+        (t 'amarillo-intermitente)
+      )
+  )
 )
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo
