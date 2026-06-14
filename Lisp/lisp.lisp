@@ -108,3 +108,32 @@
 		color-nuevo
 	)
 )
+
+;; ========================================================
+;; FUNCIÓN: generar-informe
+;; NATURALEZA: Impura (Genera un archivo de texto)
+;; ESTRATEGIA: Escritura Secuencial en Archivo
+;; IMPACTO: No destructiva
+;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(defun generar-informe (datos)
+
+	(with-open-file
+		(stream
+		 "informe-ejecucion-semaforo.txt"
+		 :direction :output
+		 :if-exists :supersede
+		 :if-does-not-exist :create)
+
+		(format stream "Informe de Ejecucion del Sistema Semaforico~%")
+		(format stream "=========================================~%")
+
+		(dolist (dato datos)
+			(format stream "~A~%" dato)
+		)
+
+		(format stream "~%--- Fin del Informe ---~%")
+	)
+
+)
