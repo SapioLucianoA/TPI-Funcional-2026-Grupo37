@@ -28,13 +28,16 @@
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
 (defun temporizador (tiempo-unix) 
-	(let ((segundos (mod tiempo-unix 216)))
-			(cond 
-				((< segundos 90 )  'rojo)
-				((and (> segundos 89) (< segundos 210)) 'verde)
-				(t 'amarillo)
-			)
-	)
+  (let ((segundos (mod tiempo-unix 225)))
+      (cond 
+        ((< segundos 90) 'rojo)
+        ((and (>= segundos 90) (< segundos 93)) 'rojo-intermitente)
+        ((and (>= segundos 93) (< segundos 213)) 'verde)
+        ((and (>= segundos 213) (< segundos 216)) 'verde-intermitente)
+        ((and (>= segundos 216) (< segundos 222)) 'amarillo)
+        (t 'amarillo-intermitente)
+      )
+  )
 )
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo
@@ -67,9 +70,9 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-verde segundos-luz-amarilla)
+(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente )
 
-(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-verde segundos-luz-amarilla ))
+(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente ))
 
 )
 
