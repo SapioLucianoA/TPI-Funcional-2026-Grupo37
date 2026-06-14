@@ -7,10 +7,17 @@
 ;; ========================================================
 (defun transicion (color-actual cambiar-a)
   (cond  
-				((and (eq color-actual 'en-rojo) (eq cambiar-a 'verde))   (list color-actual "cambiar-a-verde"))
-				((and (eq color-actual 'en-verde) (eq cambiar-a 'amarillo))  (list color-actual "cambiar-a-amarillo"))
-				((and (eq color-actual 'en-amarillo) (eq cambiar-a 'rojo))   (list color-actual "cambiar-a-rojo"))
-				(t (list color-actual 'accion-por-defecto))
+
+    ((and (eq color-actual 'rojo) (eq cambiar-a 'rojo-intermitente)) (list color-actual "cambiar-a-rojo-intermitente")) 
+    ((and (eq color-actual 'rojo-intermitente) (eq cambiar-a 'verde)) (list color-actual "cambiar-a-verde"))
+    
+    ((and (eq color-actual 'verde) (eq cambiar-a 'verde-intermitente)) (list color-actual "cambiar-a-verde-intermitente"))
+    ((and (eq color-actual 'verde-intermitente) (eq cambiar-a 'amarillo)) (list color-actual "cambiar-a-amarillo"))
+    
+    ((and (eq color-actual 'amarillo) (eq cambiar-a 'amarillo-intermitente)) (list color-actual "cambiar-a-amarillo-intermitente"))
+    ((and (eq color-actual 'amarillo-intermitente) (eq cambiar-a 'rojo)) (list color-actual "cambiar-a-rojo"))
+    
+    (t (list color-actual 'accion-por-defecto))
   )
 )
 ;; ========================================================
@@ -36,8 +43,8 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun duracion-ciclo (tiempo-rojo tiempo-verde tiempo-amarillo)
-	(+ tiempo-rojo tiempo-verde tiempo-amarillo )   
+(defun duracion-ciclo (tiempo-rojo tiempo-rojo-intermitente tiempo-verde tiempo-verde-intermitente tiempo-amarillo tiempo-amarillo-intermitente)
+	(+ tiempo-rojo tiempo-rojo-intermitente tiempo-verde tiempo-verde-intermitente tiempo-amarillo tiempo-amarillo-intermitente)   
 )
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
