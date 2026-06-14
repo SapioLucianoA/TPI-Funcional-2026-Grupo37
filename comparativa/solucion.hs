@@ -8,6 +8,9 @@
 -- IMPACTO: No destructiva
 -- ALUMNO: SCHUGURENSKY LEANDRO DANIEL
 -- ========================================================
+
+
+
 transicion :: EstadoActual -> ColorDestino -> ResultadoTransicion
 transicion EnRojo               RojoIntermitente     = ResultadoTransicion EnRojo               "cambiar-a-rojo-intermitente"
 transicion RojoIntermitente     Verde                = ResultadoTransicion RojoIntermitente     "cambiar-a-verde"
@@ -16,6 +19,12 @@ transicion VerdeIntermitente    Amarillo             = ResultadoTransicion Verde
 transicion EnAmarillo           AmarilloIntermitente = ResultadoTransicion EnAmarillo           "cambiar-a-amarillo-intermitente"
 transicion AmarilloIntermitente Rojo                 = ResultadoTransicion AmarilloIntermitente "cambiar-a-rojo"
 transicion estado               _                    = ResultadoTransicion estado               "accion-por-defecto"
+
+
+
+
+
+
 
 
 
@@ -28,6 +37,10 @@ transicion estado               _                    = ResultadoTransicion estad
 -- IMPACTO: No destructiva
 -- ALUMNO: NUÑEZ TOBIAS NAHUEL
 -- ========================================================
+
+
+
+
 temporizador :: Integer -> EstadoActual
 temporizador tiempoUnix
     | segundos <  90  = EnRojo
@@ -36,4 +49,4 @@ temporizador tiempoUnix
     | segundos <  216 = VerdeIntermitente
     | segundos <  222 = EnAmarillo
     | otherwise       = AmarilloIntermitente
-    where segundos = tiempoUnix mod 216
+    where segundos = tiempoUnix `mod` 225

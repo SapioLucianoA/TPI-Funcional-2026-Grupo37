@@ -5,13 +5,20 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun  transicion ( color-actual cambiar-a )
-		(cond  
-						((and (eq color-actual  'en-verde) (eq cambiar-a  'amarillo) ) (list color-actual "cambiar-a-amarillo")) 
-						((and (eq color-actual  'en-amarillo)  (eq cambiar-a  'rojo) ) (list color-actual "cambiar-a-rojo"))
-						((and (eq color-actual  'en-rojo ) (eq cambiar-a 'verde) ) (list color-actual "cambiar-a-verde"))
-						(t (list color-actual 'accion-por-defecto))
-		)
+(defun transicion (color-actual cambiar-a)
+  (cond  
+
+    ((and (eq color-actual 'rojo) (eq cambiar-a 'rojo-intermitente)) (list color-actual "cambiar-a-rojo-intermitente")) 
+    ((and (eq color-actual 'rojo-intermitente) (eq cambiar-a 'verde)) (list color-actual "cambiar-a-verde"))
+    
+    ((and (eq color-actual 'verde) (eq cambiar-a 'verde-intermitente)) (list color-actual "cambiar-a-verde-intermitente"))
+    ((and (eq color-actual 'verde-intermitente) (eq cambiar-a 'amarillo)) (list color-actual "cambiar-a-amarillo"))
+    
+    ((and (eq color-actual 'amarillo) (eq cambiar-a 'amarillo-intermitente)) (list color-actual "cambiar-a-amarillo-intermitente"))
+    ((and (eq color-actual 'amarillo-intermitente) (eq cambiar-a 'rojo)) (list color-actual "cambiar-a-rojo"))
+    
+    (t (list color-actual 'accion-por-defecto))
+  )
 )
 ;; ========================================================
 ;; FUNCIÓN: temporizador (nombre antigüo timer)
@@ -21,13 +28,16 @@
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
 (defun temporizador (tiempo-unix) 
-	(let ((segundos (mod tiempo-unix 216)))
-			(cond 
-				((< segundos 90 )  'rojo)
-				((and (> segundos 89) (< segundos 96)) 'amarillo)
-				(t 'verde)
-			)
-	)
+  (let ((segundos (mod tiempo-unix 225)))
+      (cond 
+        ((< segundos 90) 'rojo)
+        ((and (>= segundos 90) (< segundos 93)) 'rojo-intermitente)
+        ((and (>= segundos 93) (< segundos 213)) 'verde)
+        ((and (>= segundos 213) (< segundos 216)) 'verde-intermitente)
+        ((and (>= segundos 216) (< segundos 222)) 'amarillo)
+        (t 'amarillo-intermitente)
+      )
+  )
 )
 ;; ========================================================
 ;; FUNCIÓN: duracion-ciclo
@@ -36,8 +46,8 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
-	(+ tiempo-rojo tiempo-amarillo tiempo-verde)   
+(defun duracion-ciclo (tiempo-rojo tiempo-rojo-intermitente tiempo-verde tiempo-verde-intermitente tiempo-amarillo tiempo-amarillo-intermitente)
+	(+ tiempo-rojo tiempo-rojo-intermitente tiempo-verde tiempo-verde-intermitente tiempo-amarillo tiempo-amarillo-intermitente)   
 )
 ;; ========================================================
 ;; FUNCIÓN: recomendacion-ciclo
@@ -60,9 +70,9 @@
 ;; IMPACTO: No destructiva
 ;; ALUMNO: SAPIO LUCIANO
 ;; ========================================================
-(defun ciclos-por-tiempo (segundos-totales segundos-luz-verde segundos-luz-amarilla segundos-luz-roja )
+(defun ciclos-por-tiempo (segundos-totales segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente )
 
-(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-amarilla segundos-luz-verde))
+(floor segundos-totales (duracion-ciclo segundos-luz-roja segundos-luz-roja-intermitente segundos-luz-verde segundos-luz-verde-intermitente segundos-luz-amarilla segundos-luz-amarilla-intermitente ))
 
 )
 
@@ -107,4 +117,33 @@
 		color-anterior
 		color-nuevo
 	)
+)
+
+;; ========================================================
+;; FUNCIÓN: generar-informe
+;; NATURALEZA: Impura (Genera un archivo de texto)
+;; ESTRATEGIA: Escritura Secuencial en Archivo
+;; IMPACTO: No destructiva
+;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(defun generar-informe (datos)
+
+	(with-open-file
+		(stream
+		 "informe-ejecucion-semaforo.txt"
+		 :direction :output
+		 :if-exists :supersede
+		 :if-does-not-exist :create)
+
+		(format stream "Informe de Ejecucion del Sistema Semaforico~%")
+		(format stream "=========================================~%")
+
+		(dolist (dato datos)
+			(format stream "~A~%" dato)
+		)
+
+		(format stream "~%--- Fin del Informe ---~%")
+	)
+
 )
