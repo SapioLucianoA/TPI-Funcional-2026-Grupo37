@@ -137,6 +137,40 @@
 )
 
 ;; ========================================================
+
+;; FUNCIÓN: distribucion-por-hora
+
+;; NATURALEZA: Pura
+
+;; ESTRATEGIA: Operaciones matematicas(proporcion y composicion)
+
+;; IMPACTO: No destructiva
+
+;; ALUMNO: JOSEIFNA VALLEJOS ROMERO
+
+;; ========================================================
+
+
+
+(defun distribucion-por-hora (tiempo-rojo tiempo-verde tiempo-amarillo)
+
+  (let ((total-ciclo (+ tiempo-rojo tiempo-verde tiempo-amarillo)))
+
+    (list
+
+      (list 'rojo     (* (/ (float tiempo-rojo) total-ciclo) 100))
+
+      (list 'verde    (* (/ (float tiempo-verde) total-ciclo) 100))
+
+      (list 'amarillo (* (/ (float tiempo-amarillo) total-ciclo) 100))
+
+    )
+
+  )
+
+)
+
+;; ========================================================
 ;; FUNCIÓN: generar-informe
 ;; NATURALEZA: Impura (Genera un archivo de texto con los registros)
 ;; ESTRATEGIA: Composición de Funciones
