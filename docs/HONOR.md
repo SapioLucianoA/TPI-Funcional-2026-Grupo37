@@ -34,7 +34,7 @@ Este documento detalla el nivel de asistencia de herramientas de Inteligencia Ar
 
 ---
 
-### 👨‍💻 [Nombre del Integrante 5]
-* **IA Utilizada:** [Ej: ...]
-* **Rol y Alcance de la Asistencia:** [Ej: ...]
-* **Declaración de Autoría:** [Ej: ...]
+### 👨‍💻 Vallejos Romero,Josefina
+* **IA Utilizada:** Copilot
+* **Rol y Alcance de la Asistencia:** Guia paso a paso para el uso del Git Bash(creacion de ramas,commits,push y resolucion de conflictos),junto con aclaraciones sobre las consignas del Trabajo Practico
+* **Declaración de Autoría:** La funcion y las pruebas que realice fueron desarrollada por mi.La IA se utilizo como apoyo para comprender consignas y facilitar el manejo de herramientas.La logica y la implementacion del codigo fuente son de mi autoria
