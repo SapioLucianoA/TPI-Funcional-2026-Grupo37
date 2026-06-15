@@ -136,6 +136,7 @@
 
 )
 
+
 ;; ========================================================
 ;; FUNCIÓN: generar-informe
 ;; NATURALEZA: Impura (Genera un archivo de texto con los registros)
