@@ -89,7 +89,6 @@
 ;; NATURALEZA: Pura (Para un mismo tiempo Unix retorna siempre la misma fecha)
 ;; ESTRATEGIA: Composición de Funciones (Uso de funciones de local-time)
 ;; IMPACTO: No destructiva
-;; ALUMNO: CESAR GABRIEL PRIETO
 ;; ========================================================
 
 (defun convertir-fecha (tiempo-unix)
@@ -106,7 +105,6 @@
 ;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
 ;; ESTRATEGIA: Secuencial (Obtiene una fecha y luego genera un mensaje)
 ;; IMPACTO: No destructiva
-;; ALUMNO: CESAR GABRIEL PRIETO
 ;; ========================================================
 
 (defun registrar-cambio (tiempo-unix color-anterior color-nuevo)
@@ -120,11 +118,29 @@
 )
 
 ;; ========================================================
-;; FUNCIÓN: generar-informe
-;; NATURALEZA: Impura (Genera un archivo de texto)
-;; ESTRATEGIA: Escritura Secuencial en Archivo
+;; FUNCIÓN: escribir-datos
+;; NATURALEZA: Impura (Escribe información en un archivo)
+;; ESTRATEGIA: Recursiva Simple
 ;; IMPACTO: No destructiva
-;; ALUMNO: CESAR GABRIEL PRIETO
+;; ========================================================
+
+(defun escribir-datos (datos stream)
+
+	(cond
+		((null datos) nil)
+		(t
+			(format stream "~A~%" (car datos))
+			(escribir-datos (cdr datos) stream)
+		)
+	)
+
+)
+
+;; ========================================================
+;; FUNCIÓN: generar-informe
+;; NATURALEZA: Impura (Genera un archivo de texto con los registros)
+;; ESTRATEGIA: Composición de Funciones
+;; IMPACTO: No destructiva
 ;; ========================================================
 
 (defun generar-informe (datos)
@@ -139,9 +155,7 @@
 		(format stream "Informe de Ejecucion del Sistema Semaforico~%")
 		(format stream "=========================================~%")
 
-		(dolist (dato datos)
-			(format stream "~A~%" dato)
-		)
+		(escribir-datos datos stream)
 
 		(format stream "~%--- Fin del Informe ---~%")
 	)
