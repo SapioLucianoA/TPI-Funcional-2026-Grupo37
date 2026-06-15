@@ -103,18 +103,27 @@
 ;; ========================================================
 ;; FUNCIÓN: registrar-cambio
 ;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
-;; ESTRATEGIA: Secuencial (Obtiene una fecha y luego genera un mensaje)
+;; ESTRATEGIA: Evaluación Condicional (Valida el dato recibido antes de registrar)
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
 (defun registrar-cambio (tiempo-unix color-anterior color-nuevo)
 
-	(format t
-		"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
-		(convertir-fecha tiempo-unix)
-		color-anterior
-		color-nuevo
+	(if (numberp tiempo-unix)
+
+		(format t
+			"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
+			tiempo-unix
+			color-anterior
+			color-nuevo
+		)
+
+		(format t
+			"ERROR: el tiempo debe ser un timestamp Unix numerico.~%"
+		)
+
 	)
+
 )
 
 ;; ========================================================
