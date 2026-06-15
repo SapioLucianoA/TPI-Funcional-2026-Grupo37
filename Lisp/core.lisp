@@ -111,17 +111,22 @@
 
 	(if (numberp tiempo-unix)
 
-		(format t
-			"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
-			tiempo-unix
-			color-anterior
-			color-nuevo
+		(progn
+			(format t
+				"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
+				tiempo-unix
+				color-anterior
+				color-nuevo
+			)
+			t
 		)
 
-		(format t
-			"ERROR: el tiempo debe ser un timestamp Unix numerico.~%"
+		(progn
+			(format t
+				"ERROR: el tiempo debe ser un timestamp Unix numerico.~%"
+			)
+			nil
 		)
-
 	)
 
 )
