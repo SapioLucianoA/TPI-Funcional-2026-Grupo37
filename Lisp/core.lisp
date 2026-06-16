@@ -20,6 +20,7 @@
     (t (list color-actual 'accion-por-defecto))
   )
 )
+
 ;; ========================================================
 ;; FUNCIÓN: temporizador (nombre antigüo timer)
 ;; NATURALEZA: Pura (Para un mismo tiempo Unix de entrada, el resultado es siempre predecible y constante, sin depender de estados externos)
