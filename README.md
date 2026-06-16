@@ -1,6 +1,6 @@
 ### Grupo 37- Tema:Haskell
 
-![Banner del Grupo](assets/Grupo37-banner)
+![Banner del Grupo](assets/Grupo37-banner.png)
 
 ---
 
@@ -20,4 +20,6 @@ Este proyecto consiste en la simulación de un trabajo en el mundo real de un si
 En el siguiente video detallamos la arquitectura del sistema, las decisiones técnicas tomadas y la demostración de la ejecución de nuestro código:
 
 [![Video de Presentación](https://img.youtube.com/vi/kkk1e-M8WEg/0.jpg)](https://youtu.be/kkk1e-M8WEg?si=Lf37bVW4QiFmhv_M)
+
+
 *(Haz clic en la imagen superior para ver el video en YouTube)*
