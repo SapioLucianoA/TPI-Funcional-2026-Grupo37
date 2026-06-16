@@ -1,3 +1,25 @@
+-- Tipos de datos
+data EstadoActual
+  = EnRojo
+  | RojoIntermitente
+  | EnVerde
+  | VerdeIntermitente
+  | EnAmarillo
+  | AmarilloIntermitente
+  deriving (Show)
+
+data ColorDestino
+  = DestRojo
+  | DestRojoIntermitente
+  | DestVerde
+  | DestVerdeIntermitente
+  | DestAmarillo
+  | DestAmarilloIntermitente
+  deriving (Show)
+
+data ResultadoTransicion = ResultadoTransicion EstadoActual String
+  deriving (Show)
+
 -- ========================================================
 -- FUNCIÓN: transicion
 -- NATURALEZA: Pura (no toca nada de afuera, solo usa lo que
@@ -8,25 +30,14 @@
 -- IMPACTO: No destructiva
 -- ALUMNO: SCHUGURENSKY LEANDRO DANIEL
 -- ========================================================
-
-
-
 transicion :: EstadoActual -> ColorDestino -> ResultadoTransicion
-transicion EnRojo               RojoIntermitente     = ResultadoTransicion EnRojo               "cambiar-a-rojo-intermitente"
-transicion RojoIntermitente     Verde                = ResultadoTransicion RojoIntermitente     "cambiar-a-verde"
-transicion EnVerde              VerdeIntermitente    = ResultadoTransicion EnVerde              "cambiar-a-verde-intermitente"
-transicion VerdeIntermitente    Amarillo             = ResultadoTransicion VerdeIntermitente    "cambiar-a-amarillo"
-transicion EnAmarillo           AmarilloIntermitente = ResultadoTransicion EnAmarillo           "cambiar-a-amarillo-intermitente"
-transicion AmarilloIntermitente Rojo                 = ResultadoTransicion AmarilloIntermitente "cambiar-a-rojo"
-transicion estado               _                    = ResultadoTransicion estado               "accion-por-defecto"
-
-
-
-
-
-
-
-
+transicion EnRojo               DestRojoIntermitente     = ResultadoTransicion EnRojo               "cambiar-a-rojo-intermitente"
+transicion RojoIntermitente     DestVerde                = ResultadoTransicion RojoIntermitente     "cambiar-a-verde"
+transicion EnVerde              DestVerdeIntermitente    = ResultadoTransicion EnVerde              "cambiar-a-verde-intermitente"
+transicion VerdeIntermitente    DestAmarillo             = ResultadoTransicion VerdeIntermitente    "cambiar-a-amarillo"
+transicion EnAmarillo           DestAmarilloIntermitente = ResultadoTransicion EnAmarillo           "cambiar-a-amarillo-intermitente"
+transicion AmarilloIntermitente DestRojo                 = ResultadoTransicion AmarilloIntermitente "cambiar-a-rojo"
+transicion estado               _                        = ResultadoTransicion estado               "accion-por-defecto"
 
 -- ========================================================
 -- FUNCIÓN: temporizador
@@ -37,10 +48,6 @@ transicion estado               _                    = ResultadoTransicion estad
 -- IMPACTO: No destructiva
 -- ALUMNO: NUÑEZ TOBIAS NAHUEL
 -- ========================================================
-
-
-
-
 temporizador :: Integer -> EstadoActual
 temporizador tiempoUnix
     | segundos <  90  = EnRojo
@@ -50,3 +57,13 @@ temporizador tiempoUnix
     | segundos <  222 = EnAmarillo
     | otherwise       = AmarilloIntermitente
     where segundos = tiempoUnix `mod` 225
+
+
+
+-- Para probar
+main :: IO ()
+main = do
+  print (transicion EnRojo DestRojoIntermitente) --> EnRojo "cambiar-a-rojo-intermitente"
+  print (transicion EnVerde DestAmarillo)        --> EnVerde "accion-por-defecto"
+  print (temporizador 100)                       --> EnVerde
+  print (temporizador 500)                       --> EnRojo
