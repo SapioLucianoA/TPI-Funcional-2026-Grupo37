@@ -10,6 +10,7 @@ Este proyecto consiste en la simulación de un trabajo en el mundo real de un si
 
 ### 👥 Integrantes del Equipo:
 | Integrantes |
+| :--- |
 | **Vallejos Romero, Josefina** |
 | **Prieto, Cesar Gabriel** |
 | **Nuñez, Tobias Nahuel** |
