@@ -93,10 +93,16 @@
 
 (defun convertir-fecha (tiempo-unix)
 
-	(local-time:format-timestring
-		nil
-		(local-time:unix-to-timestamp tiempo-unix)
-	)
+  (local-time:format-timestring
+    nil
+    (local-time:unix-to-timestamp tiempo-unix)
+    :format '((:year 4) "-"
+              (:month 2) "-"
+              (:day 2) " "
+              (:hour 2) ":"
+              (:min 2) ":"
+              (:sec 2))
+  )
 
 )
 
@@ -107,49 +113,47 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
+;; ========================================================
+;; FUNCIÓN: registrar-cambio
+;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
+;; ESTRATEGIA: Evaluación Condicional (Valida el dato recibido antes de registrar)
+;; IMPACTO: No destructiva
+;; ========================================================
+
 (defun registrar-cambio (tiempo-unix color-anterior color-nuevo)
-
-	(if (numberp tiempo-unix)
-
-		(progn
-			(format t
-				"Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
-				tiempo-unix
-				color-anterior
-				color-nuevo
-			)
-			t
-		)
-
-		(progn
-			(format t
-				"ERROR: el tiempo debe ser un timestamp Unix numerico.~%"
-			)
-			nil
-		)
-	)
-
-)
+  (if (numberp tiempo-unix)
+      (let ((fecha (convertir-fecha tiempo-unix)))
+        (format t "[~A] la luz ha cambiado de ~A a ~A~%" 
+                fecha color-anterior color-nuevo)
+        (with-open-file (stream "informe-ejecucion-semaforo-grupo37.txt"
+                                :direction :output
+                                :if-exists :append        ; acumula
+                                :if-does-not-exist :create)
+          (format stream "[~A] Transicion: ~A -> ~A~%" 
+                  fecha color-anterior color-nuevo))
+        t)
+      (progn
+        (format t "ERROR: el tiempo debe ser un timestamp Unix numerico.~%")
+        nil)))
 
 ;; ========================================================
 ;; FUNCIÓN: escribir-datos
 ;; NATURALEZA: Impura (Escribe información en un archivo)
-;; ESTRATEGIA: Recursiva Simple
+;; ESTRATEGIA: Recursiva de Cola
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
 (defun escribir-datos (datos stream)
-
-	(cond
-		((null datos) nil)
-		(t
-			(format stream "~A~%" (car datos))
-			(escribir-datos (cdr datos) stream)
-		)
-	)
-
-)
-
+  (cond
+    ((null datos) nil)
+    (t
+    (destructuring-bind (epoch anterior nuevo) (car datos)
+      (format stream "[~A] Transicion: ~A -> ~A~%"
+              (convertir-fecha epoch)
+              anterior
+              nuevo))
+    (escribir-datos (cdr datos) stream))))
+		
 ;; ========================================================
 ;; FUNCIÓN:distribucion-por-hora
 ;; NATURALEZA:Pura
@@ -163,12 +167,43 @@
 	(let ((total-ciclo (+ tiempo-rojo tiempo-verde tiempo-amarillo)))
 		(list
 			(list 'rojo (*(/ (float tiempo-rojo)total-ciclo)100))
-	    (list 'verde (*(/(float tiempo-verde)total-ciclo)100))
-	    (list 'amarillo (*(/(float tiempo-amarillo)total-ciclo)100))
-	  )
+	  (list 'verde (*(/(float tiempo-verde)total-ciclo)100))
+		(list 'amarillo (*(/(float tiempo-amarillo)total-ciclo)100))
+		)
 	)
 )
+;; ========================================================
+;; FUNCIÓN: escribir-datos
+;; NATURALEZA: Impura (Escribe información en un archivo)
+;; ESTRATEGIA: Recursiva de Cola
+;; IMPACTO: No destructiva
+;; ========================================================
 
+(defun escribir-datos (datos stream)
+  (cond
+    ((null datos) nil)
+    (t
+    (destructuring-bind (epoch anterior nuevo) (car datos)
+      (format stream "[~A] Transicion: ~A -> ~A~%"
+              (convertir-fecha epoch)
+              anterior
+              nuevo))
+    (escribir-datos (cdr datos) stream))))
+
+
+;; ========================================================
+;; FUNCIÓN: leer-lineas
+;; NATURALEZA: Impura (efecto secundario: imprime en pantalla mediante format)
+;; ESTRATEGIA: Recursiva de Cola 
+;; IMPACTO: No destructiva - no modifica el stream ni la lista de lineas,
+;;          solo las lee secuencialmente
+;; ========================================================
+
+(defun leer-lineas (stream)
+  (let ((linea (read-line stream nil)))
+    (when linea
+      (format t "~A~%" linea)
+      (leer-lineas stream))))
 
 ;; ========================================================
 ;; FUNCIÓN: generar-informe
@@ -177,21 +212,14 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun generar-informe (datos)
-
-	(with-open-file
-		(stream
-		 "informe-ejecucion-semaforo.txt"
-		 :direction :output
-		 :if-exists :supersede
-		 :if-does-not-exist :create)
-
-		(format stream "Informe de Ejecucion del Sistema Semaforico~%")
-		(format stream "=========================================~%")
-
-		(escribir-datos datos stream)
-
-		(format stream "~%--- Fin del Informe ---~%")
-	)
-
-)
+(defun generar-informe ()
+  (format t "~%=========================================~%")
+  (format t "Informe de Ejecucion del Sistema Semaforico~%")
+  (format t "=========================================~%")
+  (with-open-file (stream "informe-ejecucion-semaforo-grupo37.txt"
+                          :direction :input
+                          :if-does-not-exist nil)
+    (if stream
+        (leer-lineas stream)
+        (format t "No hay registros aun.~%")))
+  (format t "~%--- Fin del Informe ---~%"))
