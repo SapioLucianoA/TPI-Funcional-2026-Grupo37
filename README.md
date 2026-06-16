@@ -1,8 +1,7 @@
 ### Grupo 37- Tema:Haskell
 
-<p align="center">
-  <img src="https://docs.google.com/uc?export=view&id=1GVDXemnVcbNp_0xYttiEoDAQBVVoO40y" alt="banner-grupo37">
-</p>
+![banner-grupo37](https://docs.google.com/uc?export=view&id=1GVDXemnVcbNp_0xYttiEoDAQBVVoO40y)
+
 
 ---
 
