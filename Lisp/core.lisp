@@ -136,24 +136,7 @@
         (format t "ERROR: el tiempo debe ser un timestamp Unix numerico.~%")
         nil)))
 
-;; ========================================================
-;; FUNCIÓN: escribir-datos
-;; NATURALEZA: Impura (Escribe información en un archivo)
-;; ESTRATEGIA: Recursiva de Cola
-;; IMPACTO: No destructiva
-;; ========================================================
 
-(defun escribir-datos (datos stream)
-  (cond
-    ((null datos) nil)
-    (t
-    (destructuring-bind (epoch anterior nuevo) (car datos)
-      (format stream "[~A] Transicion: ~A -> ~A~%"
-              (convertir-fecha epoch)
-              anterior
-              nuevo))
-    (escribir-datos (cdr datos) stream))))
-		
 ;; ========================================================
 ;; FUNCIÓN:distribucion-por-hora
 ;; NATURALEZA:Pura
@@ -193,18 +176,18 @@
 
 ;; ========================================================
 ;; FUNCIÓN: leer-lineas
-;; NATURALEZA: Impura (efecto secundario: imprime en pantalla mediante format)
-;; ESTRATEGIA: Recursiva de Cola 
-;; IMPACTO: No destructiva - no modifica el stream ni la lista de lineas,
-;;          solo las lee secuencialmente
+;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
+;; ESTRATEGIA DE CONTROL: Recursiva de Cola (Tail Recursive)
+;; IMPACTO EN MEMORIA: No Destructiva
 ;; ========================================================
 
 (defun leer-lineas (stream)
-  (let ((linea (read-line stream nil)))
-    (when linea
-      (format t "~A~%" linea)
-      (leer-lineas stream))))
-
+  (let ((linea (read-line stream nil nil)))
+    (if (null linea)
+        nil ; 
+        (progn
+          (format t "A%" linea) 
+          (leer-lineas stream)))))
 ;; ========================================================
 ;; FUNCIÓN: generar-informe
 ;; NATURALEZA: Impura (Genera un archivo de texto con los registros)
