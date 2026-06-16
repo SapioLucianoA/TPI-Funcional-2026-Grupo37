@@ -1,51 +1,25 @@
-# 💻 Trabajo-Integrador-Paradigmas
+### Grupo 37- Tema:Haskell
 
-
----
-
-## 🛠️ Guía rápida de Git para el equipo
-
-### 📥 1. Primera vez (Descargar el proyecto)
-Este comando se ejecuta **una sola vez** para descargar el repositorio a tu computadora:
-
-```bash
-git clone https://github.com/SapioLucianoA/TPI-Funcional-2026-Grupo37
-```
+<p align="center">
+  <img src="https://docs.google.com/uc?export=view&id=1GVDXemnVcbNp_0xYttiEoDAQBVVoO40y" alt="banner-grupo37">
+</p>
 
 ---
 
-### 🔄 2. Flujo de trabajo diario
+## 📝 Descripción del Proyecto
+Este proyecto consiste en la simulación de un trabajo en el mundo real de un sistema de semáforos aplicando estrictamente el **Paradigma Funcional**.
+---
 
-> **🛑 REGLA DE ORO:** Nunca trabajamos directamente en la rama `main`.
+### 👥 Integrantes del Equipo:
+| Integrante |
+| **Vallejos Romero, Josefina** |
+| **Prieto, Cesar Gabriel** |
+| **Nuñez, Tobias Nahuel** |
+| **Schugurensky, Leandro Daniel**|
+| **Sapio, Luciano Agustín** |
 
-#### Paso 1: Crear y usar una rama propia
-Para empezar una nueva tarea, creá tu propia rama y movete a ella para trabajar seguro:
-```bash
-git checkout -b nombre-de-tu-rama
-```
-*(Ejemplo: `git checkout -b feature-calculos`)*
+## 🎬 Presentación del Proyecto
+En el siguiente video detallamos la arquitectura del sistema, las decisiones técnicas tomadas y la demostración de la ejecución de nuestro código:
 
-#### Paso 2: Guardar tus cambios
-A medida que vayas avanzando con tu parte, guardá tu progreso localmente:
-```bash
-git add . 
-git commit -m "Descripción clara de lo que hiciste"
-```
-
-#### Paso 3: Actualizar antes de subir (🚨 ¡El paso más importante!)
-Antes de "pushear" (mandar) tu código a GitHub, nos traemos (`pull`) lo que hay en el main. Esto evita conflictos con el trabajo de los demás:
-```bash
-git pull origin main
-```
-*(Nota: Si hay conflictos, resolvelos en tu editor, guardá los archivos y volvé a hacer `add` y `commit`).*
-
-#### Paso 4: Subir tu rama a GitHub
-Una vez que tu código esté actualizado y funcionando bien, subí tu rama a la nube:
-```bash
-git push origin nombre-de-tu-rama
-```
-
-```bash
-https://github.com/SapioLucianoA/TPI-Funcional-2026-Grupo37  
-```
-
+[![Video de Presentación](https://img.youtube.com/vi/kkk1e-M8WEg/0.jpg)](https://youtu.be/kkk1e-M8WEg?si=Lf37bVW4QiFmhv_M)
+*(Haz clic en la imagen superior para ver el video en YouTube)*
