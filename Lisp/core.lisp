@@ -114,13 +114,6 @@
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-;; ========================================================
-;; FUNCIÓN: registrar-cambio
-;; NATURALEZA: Impura (Realiza salida por pantalla mediante format)
-;; ESTRATEGIA: Evaluación Condicional (Valida el dato recibido antes de registrar)
-;; IMPACTO: No destructiva
-;; ========================================================
-
 (defun registrar-cambio (tiempo-unix color-anterior color-nuevo)
   (if (numberp tiempo-unix)
       (let ((fecha (convertir-fecha tiempo-unix)))
@@ -137,6 +130,19 @@
         (format t "ERROR: el tiempo debe ser un timestamp Unix numerico.~%")
         nil)))
 
+;; ========================================================
+;; FUNCIÓN ATAJO: test-escribir (Solo para usar en la terminal)
+;; NATURALEZA: Impura (Abre un archivo)
+;; ESTRATEGIA: Composición de Funciones
+;; IMPACTO: No destructiva
+;; ========================================================
+
+(defun test-escribir (lista-datos)
+  (with-open-file (archivo "informe-ejecucion-semaforo-grupo37.txt"
+                           :direction :output
+                           :if-exists :append
+                           :if-does-not-exist :create)
+    (escribir-datos lista-datos archivo)))
 
 ;; ========================================================
 ;; FUNCIÓN:distribucion-por-hora
