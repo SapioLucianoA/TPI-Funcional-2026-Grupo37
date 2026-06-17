@@ -139,9 +139,9 @@
 
 (defun test-escribir (lista-datos)
   (with-open-file (archivo "informe-ejecucion-semaforo-grupo37.txt"
-                           :direction :output
-                           :if-exists :append
-                           :if-does-not-exist :create)
+                          :direction :output
+                          :if-exists :append
+                          :if-does-not-exist :create)
     (escribir-datos lista-datos archivo)))
 
 ;; ========================================================
