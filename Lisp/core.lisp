@@ -196,13 +196,13 @@
           (format t "A%" linea) 
           (leer-lineas stream)))))
 ;; ========================================================
-;; FUNCIÓN: generar-informe
+;; FUNCIÓN: informe
 ;; NATURALEZA: Impura (Genera un archivo de texto con los registros)
 ;; ESTRATEGIA: Composición de Funciones
 ;; IMPACTO: No destructiva
 ;; ========================================================
 
-(defun generar-informe ()
+(defun informe ()
   (format t "~%=========================================~%")
   (format t "Informe de Ejecucion del Sistema Semaforico~%")
   (format t "=========================================~%")
